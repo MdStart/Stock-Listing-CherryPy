@@ -1,0 +1,145 @@
+## -*- coding: utf-8 -*-
+<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta property="og:title" content="TİTLE" />
+				<meta property="og:description" content="CONTENT" />
+				<meta property="og:image" content="İMAGE URL" />
+				<html prefix="og: http://ogp.me/ns#">
+				<title>BSE Stocks Display</title>
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+				  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+				  crossorigin="anonymous">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+				  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+				  crossorigin="anonymous">
+
+			<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+			<style>
+					.row{
+						margin-top:40px;
+						padding: 0 10px;
+					}
+					.clickable{
+						cursor: pointer;   
+					}
+
+					.panel-heading div {
+						margin-top: -18px;
+						font-size: 15px;
+					}
+					.panel-heading div span{
+						margin-left:5px;
+					}
+					h1 {
+					color: #FFA07A;
+					
+					}
+					
+			</style>
+
+			
+			<body>
+
+			<div class="container">
+				<h1>BSE Equity Stocks<small>- A Zerodha Powered Page!</small></h1>
+	
+					<div class="row">
+					
+				
+						<div class="col-md-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">Stocks</h3>
+								</div>						
+								<div class="panel-body">
+									<input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Stocks by Name" onkeyup="searchFunction()" />
+								</div>
+								<table class="table table-hover" id="task-table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Code</th>
+											<th>Name</th>
+											<th>Open</th>
+											<th>High</th>
+											<th>Low</th>
+											<th>Close</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										
+										% for ind, dic in enumerate(outdata, start = 1):
+										<tr>
+										    <td>${ind}</td>
+											 
+										    <td>${dic['code']| trim}</td>
+									    
+										    <td id="serch">${dic['name']| trim}</td>
+										   
+										    <td>${dic['open']| trim}</td>
+										     
+										    <td>${dic['high']| trim}</td>
+										    
+        								    <td>${dic['low']| trim}</td>
+											
+										    <td>${dic['close']| trim}</td>							    
+										</tr>
+										% endfor	
+								
+										
+										
+									</tbody>
+								</table>
+
+							</div>
+							<!--
+								<input type="button" class="btn btn-success" id="seeMoreRecords" value="Show More">
+								<input type="button" class="btn btn-warning" id="seeLessRecords" value="Show Less">
+								-->
+						</div>
+					</div>
+				</div>
+				
+			</body>
+			<script>
+			
+			var trs = $("#task-table tr");
+			trs.hide();
+            trs.slice(0, 11).show();
+			
+			function searchFunction() {
+			  var input, filter, table, tr, td, i;
+			  input = document.getElementById("task-table-filter");
+			  filter = input.value.toUpperCase();
+			  table = document.getElementById("task-table");
+			  tr = table.getElementsByTagName("tr");
+			  for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[2];
+				if (td) {
+				  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				  } else {
+					tr[i].style.display = "none";
+					
+				  }
+				 
+				}
+ 			
+			}
+			//var trss = $("#task-table tr");
+			//trss.hide();
+            //trss.slice(0, 11).show();
+			}
+			</script>
+			</html>

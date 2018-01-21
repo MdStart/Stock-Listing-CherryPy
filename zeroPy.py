@@ -50,18 +50,18 @@ try:
 except:
     print("failed to extract csv file from zip url")
 zip_ref.close()
-print("\n")
+#print("\n")
 print("=============================================================")
 print("Extracted csv file name would be like EQ_ISINCODE_ddmmyy.CSV i.e. for input as 13 11 17 csv filename would be EQ_ISINCODE_131117.CSV")
-print("\n")
-print("=============================================================")
+#print("\n")
+#print("=============================================================")
 
-print("csv Data insertion to redis DB as key-value")
+#print("csv Data insertion to redis DB as key-value")
 
 
-print("Creating Dataframe from csv Data & filterting, altering data to desired data for redis")
+#print("Creating Dataframe from csv Data & filterting, altering data to desired data for redis")
 
-df = pd.read_csv("C:\Python34\EQ_ISINCODE_131117.CSV")
+df = pd.read_csv("EQ_ISINCODE_131117.CSV")
 col=["code", "name", "open", "high", "low", "close"]
 dfc= df[['SC_CODE', 'SC_NAME', 'OPEN', 'HIGH', 'LOW', 'CLOSE']].copy()
 dfc.columns =col
